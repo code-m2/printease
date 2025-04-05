@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customer Information Dashboard</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+        h1 {
+            text-align: center;
+        }
+        form {
+            margin-bottom: 20px;
+            padding: 20px;
+            background: white;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        input, select {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            background-color: #28a745;
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #218838;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            border: 1px solid #ccc;
+            padding: 10px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Customer Information Dashboard</h1>
+
+<form id="customerForm">
+    <input type="text" id="customerName" placeholder="Customer Name" required>
+    <input type="text" id="phoneNumber" placeholder="Phone Number" required>
+    <input type="email" id="emailAddress" placeholder="Email Address" required>
+    <select id="serviceToAvail" required>
+        <option value="">Select Service to Avail</option>
+        <option value="Print">Print</option>
+        <option value="Tarpaulin">Tarpaulin</option>
+        <option value="Lanyard">Lanyard</option>
+        <option value="Photocopy">Photocopy</option>
+        <option value="Laminate">Laminate</option>
+    </select>
+    <select id="reservationQueue" required>
+        <option value="">Select Reservation or Queue</option>
+        <option value="Reservation">Reservation</option>
+        <option value="Queue">Queue</option>
+    </select>
+    <button type="submit">Add Customer</button>
+</form>
+
+<table id="customerTable">
+    <thead>
+        <tr>
+            <th>Customer Name</th>
+            <th>Phone Number</th>
+            <th>Email Address</th>
+            <th>Service to Avail</th>
+            <th>Reservation/Queue</th>
+        </tr>
+    </thead>
+    <tbody>
+        <!-- Customer data will be appended here -->
+    </tbody>
+</table>
+
+<script>
+    document.getElementById('customerForm').addEventListener('submit', function(event) {
+        event.preventDefault(); // Prevent form submission
+
+        // Get form values
+        const name = document.getElementById('customerName').value;
+        const phone = document.getElementById('phoneNumber').value;
+        const email = document.getElementById('emailAddress').value;
+        const service = document.getElementById('serviceToAvail').value;
+        const reservationQueue = document.getElementById('reservationQueue').value;
+
+        // Create a new row in the table
+        const table = document.getElementById('customerTable').getElementsByTagName('tbody')[0];
+        const newRow = table.insertRow();
+
+        newRow.insertCell(0).textContent = name;
+        newRow.insertCell(1).textContent = phone;
+        newRow.insertCell(2).textContent = email;
+        newRow.insertCell(3).textContent = service;
+        newRow.insertCell(4).textContent = reservationQueue;
+
+        // Clear the form
+        document.getElementById('customerForm').reset();
+    });
+</script>
+
+</body>
+</html>
